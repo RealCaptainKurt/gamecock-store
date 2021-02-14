@@ -1,0 +1,8 @@
+{
+  "name": "GamecockStore",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "f932c24c"
+}
