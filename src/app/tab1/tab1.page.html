@@ -1,19 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 
-    <IonButton>
-      <IonIcon slot="start" icon={star} />
-      Left Icon
-    </IonButton>
-
     <ion-title>
       Test test
     </ion-title>
 
-    <IonButton>
-      <IonIcon slot="start" icon={star} />
+    <ion-buttons slot="secondary"></ion-buttons>
+    <ion-button (click)="clickedSearch()">
+      <ion-icon slot="start" icon={star} ></ion-icon>
       Left Icon
-    </IonButton>
+    </ion-button>
+
+    <ion-button>
+      <ion-icon slot="end" icon={star} ></ion-icon>
+      Right Icon
+    </ion-button>
 
   </ion-toolbar>
 </ion-header>

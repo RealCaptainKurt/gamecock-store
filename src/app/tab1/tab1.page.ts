@@ -9,4 +9,7 @@ export class Tab1Page {
 
   constructor() {}
 
+  clickedSearch() {
+    console.log(" clicked me")
+  }
 }
