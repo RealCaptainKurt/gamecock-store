@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="new_product_form" (submit)="createProduct(new_product_form.value">
+  <form [formGroup]="new_product_form" (submit)="createProduct(new_product_form.value)">
     <ion-item>
       <ion-label color="primary" position="floating">Name</ion-label>
       <ion-input type="text" formControlName="name" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" position="floating">Price</ion-label>
-      <ion-input type="text" formControlName="price" required></ion-input>
+      <ion-input type="number" formControlName="price" required></ion-input>
     </ion-item>
     <!-- This section will be completed once I figure out enums-->
     <!-- <ion-item>
@@ -30,6 +30,7 @@
       <ion-label color="primary" position="floating">Description</ion-label>
       <ion-input type="text" formControlName="description" required></ion-input>
     </ion-item>
+    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Create Product</ion-button>
   </form>
   test
 

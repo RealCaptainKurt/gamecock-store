@@ -14,20 +14,19 @@ export class AddProductPagePage implements OnInit {
   new_product_form: FormGroup;
 
   constructor(
-    private router: Router,
-    public formBuilder: FormBuilder//,
-    // public itemService: ItemService
+    // private router: Router,
+    // public formBuilder: FormBuilder//,
+    // // public itemService: ItemService
   ) { }
 
   ngOnInit() {
-
-    this.new_product_form = this.formBuilder.group({
-      name: new FormControl('', Validators.required),
-      price: new FormControl(0, Validators.required),
-      // category: new FormControl(default, Validators.required),
-      photo: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
-    });
+    // this.new_product_form = this.formBuilder.group({
+    //   name: new FormControl('', Validators.required),
+    //   price: new FormControl(0, Validators.required),
+    //   // category: new FormControl(default, Validators.required),
+    //   photo: new FormControl('', Validators.required),
+    //   description: new FormControl('', Validators.required)
+    // });
   }
 
 }

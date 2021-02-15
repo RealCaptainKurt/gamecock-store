@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,12 +9,21 @@ import { AddProductPagePageRoutingModule } from './add-product-page-routing.modu
 
 import { AddProductPagePage } from './add-product-page.page';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: AddProductPagePage
+  }
+];
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddProductPagePageRoutingModule
+    AddProductPagePageRoutingModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [AddProductPagePage]
 })
