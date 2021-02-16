@@ -31,17 +31,17 @@
     
         <ion-item>
           <ion-label>Toy</ion-label>
-          <ion-radio slot="start" value="0"></ion-radio>
+          <ion-radio slot="start" value="Toy"></ion-radio>
         </ion-item>
     
         <ion-item>
           <ion-label>Food</ion-label>
-          <ion-radio slot="start" value="1"></ion-radio>
+          <ion-radio slot="start" value="Food"></ion-radio>
         </ion-item>
     
         <ion-item>
           <ion-label>Drink</ion-label>
-          <ion-radio slot="start" value="2"></ion-radio>
+          <ion-radio slot="start" value="Drink"></ion-radio>
         </ion-item>
       </ion-radio-group>
     </ion-list>
@@ -56,7 +56,8 @@
       <ion-input type="text" formControlName="description" required></ion-input>
     </ion-item>
 
-    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Create</ion-button>
+    <ion-button class="submit-btn" expand="block" type="submit">Create</ion-button>
+    <!-- [disabled]="!new_item_form.valid" -->
   </form>
 
 </ion-content>
