@@ -24,7 +24,7 @@ export class AddProductPagePage implements OnInit {
     this.new_product_form = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       price: new FormControl(0, Validators.required),
-      category: new FormControl(Category["default"], Validators.required),
+      category: new FormControl(Category[4], Validators.required),
       photo: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
     });
@@ -44,7 +44,8 @@ export class AddProductPagePage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/tabs/ProductListPage']);
+    console.log("clicked goBack");
+    this.router.navigate(["./tabs/ProductListPage"]);
   }
 
 }

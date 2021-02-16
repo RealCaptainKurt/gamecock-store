@@ -1,6 +1,6 @@
 export enum Category {
-    toy,
-    food,
-    drink,
-    default
+    toy = "toy",
+    food = "food",
+    drink = "drink",
+    default = "default"
 }

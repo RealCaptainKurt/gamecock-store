@@ -33,6 +33,7 @@
   </ion-header>
 
   <!-- <ion-img [src]="imgfile"></ion-img> -->
+  
 
   <ion-list>
     <ion-item *ngFor="let item of menus" (click)="viewItem(item)">
@@ -42,7 +43,7 @@
         <ion-img [src]=item.photo></ion-img>
       </ion-thumbnail>
       <ion-label>{{item.name}}</ion-label>
-      <!-- TODO: figure out how to get this to float right VV-->
+      <!-- TODO: figure out how to get this to float right V V-->
       <ion-label>${{item.price}}</ion-label>
       <!-- <ion-label>{{item.description}}</ion-label> -->
 

@@ -6,10 +6,29 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>{{order.id}}</ion-title>
+    <ion-title>{{order.item.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-img [src]=order.item.photo></ion-img>
+
+  <ion-item>
+    ${{order.item.price}}
+  </ion-item>
+  <ion-item>
+    {{order.item.description}}
+  </ion-item>
+
+  <ion-item>
+    {{order.quantity}} total for ${{order.total}}
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="orderMe()" expand="block">
+      <ion-icon name="remove">Remove item from cart</ion-icon>
+    </ion-button>
+  </ion-item>
 
 </ion-content>

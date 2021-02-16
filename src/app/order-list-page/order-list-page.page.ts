@@ -7,19 +7,18 @@ import { ItemService } from '../item.service';
   templateUrl: './order-list-page.page.html',
   styleUrls: ['./order-list-page.page.scss'],
 })
-
 export class OrderListPagePage {
 
   orders=[]
 
-  constructor(private router:Router,
+  constructor(private router: Router,
     public itemService: ItemService) { 
       this.orders= this.itemService.getOrders();
       console.log("constructor of OrderListPage")
     }
 
     viewOrder(order) {
-      console.log("clicked an item")
+      console.log("clicked an order")
       this.router.navigate(["/order-detail-page",order])
     }
 

@@ -29,17 +29,17 @@ export class ProductDetailPagePage implements OnInit {
   	)
   }
 
-  printCategory() {
-    if(this.item.category == 0) {
-      return "Toy";
-    } else if (this.item.category == 1) {
-      return "Food";
-    } else if (this.item.category == 2) {
-      return "Drink";
-    } else {
-      return "Error, this is the default category";
-    }
-  }
+  // printCategory() {
+  //   if(this.item.category == 0) {
+  //     return "Toy";
+  //   } else if (this.item.category == 1) {
+  //     return "Food";
+  //   } else if (this.item.category == 2) {
+  //     return "Drink";
+  //   } else {
+  //     return "Error, this is the default category";
+  //   }
+  // }
 
   orderMe() {
     console.log(this.order.quanitity); // listen, somewhere in my code i delcared this as "quanitity" instead of "quantity" and I dont know where it is to change it back
@@ -49,7 +49,7 @@ export class ProductDetailPagePage implements OnInit {
 
   goBack() {
     console.log("clicked goBack");
-    this.router.navigate(["/product-list-page"]);
+    this.router.navigate(["../tabs/ProductListPage"]);
   }
 
 }
