@@ -1,13 +1,59 @@
 <ion-header>
   <ion-toolbar>
+    
+
+    <ion-buttons slot="primary">
+      <ion-buttons slot="end">
+        <ion-button (click)="openAddProductPage()">
+          <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-buttons>
+
     <ion-title>
-      ProductListPage
+      Product List
     </ion-title>
+
+    <!-- Good back button, not on this screen tho -->
+    <!-- <ion-buttons slot="secondary">
+      <ion-button>
+        Back
+        <ion-icon slot="end" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">USC $ store</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  Want to order something?
+
+
+  <ion-img [src]="imgfile"></ion-img>
+
   <ion-list>
+  <ion-item *ngFor="let item of menus" (click)="viewItem(item)">
+    
+
+    <ion-thumbnail slot="start">
+      <ion-img [src]="item.src"></ion-img>
+    </ion-thumbnail>
+    <ion-label>{{item.text}}</ion-label>
+    <ion-label>${{item.price}}</ion-label>
+    <ion-label>{{item.quantity}}</ion-label>
+
+  </ion-item>
+</ion-list>
+
+
+  <!-- Early testing, this can all be ignored -->
+  <!-- <ion-list>
     <ion-item>
       <ion-label>Pokémon Yellow</ion-label>
     </ion-item>
@@ -39,5 +85,5 @@
       <ion-label>Checkbox</ion-label>
       <ion-checkbox slot="start"></ion-checkbox>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

@@ -17,11 +17,29 @@
       <ion-label color="primary" position="floating">Price</ion-label>
       <ion-input type="number" formControlName="price" required></ion-input>
     </ion-item>
-    <!-- This section will be completed once I figure out enums-->
-    <!-- <ion-item>
-      <ion-label color="primary" position="floating">Category</ion-label>
-      <ion-input type="category" formControlName="category" required></ion-input>
-    </ion-item> -->
+    <ion-list>
+      <ion-radio-group value="category1">
+        <ion-list-header>
+          <ion-label>Category</ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Toy</ion-label>
+          <ion-radio slot="start" value="toy"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Food</ion-label>
+          <ion-radio slot="start" value="food"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Drink</ion-label>
+          <ion-radio slot="start" value="drink"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-input type="category" formControlName="category1" required></ion-input>
+    </ion-list>
     <ion-item>
       <ion-label color="primary" position="floating">Photo URL</ion-label>
       <ion-input type="text" formControlName="photoURL" required></ion-input>
@@ -32,6 +50,5 @@
     </ion-item>
     <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Create Product</ion-button>
   </form>
-  test
 
 </ion-content>
