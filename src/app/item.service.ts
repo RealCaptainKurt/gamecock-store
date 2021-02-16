@@ -16,14 +16,21 @@ export class ItemService {
   ]
 
   orders=[
-    {id:1,quanitity:3,date:'2021-2-16',amount:12.0},
-    {id:2,quanitity:1,date:'2021-2-16',amount:15.0}
+    {id:1,item:this.findItem("Cocky Plushy"),quanitity:2,date:'2021-2-16',amount:12.0},
+    {id:2,item:this.findItem("Hot Pockets"),quanitity:4,date:'2021-2-16',amount:15.0}
   ]
 
   constructor() { }
 
-  createItem(name1: string, price1:number, cat1:Category, photo1, description1) {
+  createItem(name1:string, price1:number, cat1:Category, photo1:string, description1:string) {
     this.menus.push({name:name1,price:price1,category:cat1,photo:photo1,description:description1});
+  }
+
+  findItem(name) {
+    for(let i = 0; i < this.menus.length; i++) {
+      if(this.menus[i].name == name)
+        return this.menus[i];
+    }
   }
 
   getItems() {
@@ -39,6 +46,7 @@ export class ItemService {
 		var date = d.getDate().toString();
 		this.orders.push({
 			id:orderid,
+      item:item,
 			quanitity:quantity,
 			date:date,
 			amount:quantity*item.price

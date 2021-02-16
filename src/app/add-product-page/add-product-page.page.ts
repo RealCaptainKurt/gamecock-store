@@ -44,7 +44,7 @@ export class AddProductPagePage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/ProductListPage']);
+    this.router.navigate(['/tabs/ProductListPage']);
   }
 
 }

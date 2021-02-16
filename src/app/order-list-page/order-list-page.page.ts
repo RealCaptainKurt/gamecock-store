@@ -18,9 +18,9 @@ export class OrderListPagePage {
       console.log("constructor of OrderListPage")
     }
 
-    viewItem(item) {
+    viewOrder(order) {
       console.log("clicked an item")
-      this.router.navigate(["/order-detail-page",item])
+      this.router.navigate(["/order-detail-page",order])
     }
 
 }
