@@ -15,31 +15,30 @@
   <ion-img [src]=item.photo></ion-img>
 
   <ion-item>
-    {{item.category}}
-  </ion-item>
-  <ion-item>
-    ${{item.price}}
+    <ion-label>{{item.category}}</ion-label>
+    <ion-label class="alignright">${{item.price}}</ion-label>
   </ion-item>
   <ion-item>
     {{item.description}}
   </ion-item>
 
   <ion-item>
-    <ion-label>How many want to order?</ion-label>
+    <ion-label>How many would you like to order?</ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-range min="1" max="100" step="1" pin='true'  [(ngModel)]="order.quantity">
+    <ion-range min="1" max="20" step="1" pin='true'  [(ngModel)]="order.quantity">
         <ion-icon size="small" slot="start" name="sunny"></ion-icon>
         <ion-icon slot="end" name="sunny"></ion-icon>
       </ion-range>
     <p>quantity:{{order.quantity}}</p>
   </ion-item>
 
-  <ion-item>
+  <!-- <ion-item> -->
     <ion-button (click)="orderMe()" expand="block">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      <ion-icon name="add-circle"></ion-icon>
+      <!-- slot="icon-only"  -->
     </ion-button>
-  </ion-item>
+  <!-- </ion-item> -->
 
 </ion-content>
