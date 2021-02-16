@@ -1,24 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>New Product</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+    <ion-buttons slot="secondary">
+      <ion-button (click)=goBack()>
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form [formGroup]="new_product_form" (submit)="createProduct(new_product_form.value)">
+<ion-content fullscreen="true">
+  <form [formGroup]="new_product_form" (submit)="createItem(new_product_form.value)">
+    
     <ion-item>
       <ion-label color="primary" position="floating">Name</ion-label>
       <ion-input type="text" formControlName="name" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label color="primary" position="floating">Price</ion-label>
       <ion-input type="number" formControlName="price" required></ion-input>
     </ion-item>
+
+    <!-- Radio List here -->
     <ion-list>
-      <ion-radio-group value="category1">
+      <ion-radio-group formControlName="category">
         <ion-list-header>
           <ion-label>Category</ion-label>
         </ion-list-header>
@@ -38,17 +44,19 @@
           <ion-radio slot="start" value="drink"></ion-radio>
         </ion-item>
       </ion-radio-group>
-      <ion-input type="category" formControlName="category1" required></ion-input>
     </ion-list>
+
     <ion-item>
       <ion-label color="primary" position="floating">Photo URL</ion-label>
-      <ion-input type="text" formControlName="photoURL" required></ion-input>
+      <ion-input type="text" formControlName="photo" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label color="primary" position="floating">Description</ion-label>
       <ion-input type="text" formControlName="description" required></ion-input>
     </ion-item>
-    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Create Product</ion-button>
+
+    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Create</ion-button>
   </form>
 
 </ion-content>

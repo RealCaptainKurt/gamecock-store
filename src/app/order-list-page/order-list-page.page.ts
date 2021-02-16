@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-order-list-page',
   templateUrl: './order-list-page.page.html',
   styleUrls: ['./order-list-page.page.scss'],
 })
-export class OrderListPagePage implements OnInit {
 
-  constructor() { }
+export class OrderListPagePage {
 
-  ngOnInit() {
-  }
+  orders=[]
+
+  constructor(private router:Router,
+    public itemService: ItemService) { 
+      this.orders= this.itemService.getOrders();
+      console.log("constructor of OrderListPage")
+    }
+
+    viewItem(item) {
+      console.log("clicked an item")
+      this.router.navigate(["/order-detail-page",item])
+    }
 
 }

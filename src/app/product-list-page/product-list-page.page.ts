@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-product-list-page',
@@ -8,8 +9,22 @@ import { Router } from '@angular/router';
 })
 export class ProductListPage {
 
-  constructor(private router: Router,
-    public itemService) { }
+  menus=[]
 
+  constructor(private router: Router,
+    public itemService: ItemService) { 
+      this.menus= this.itemService.getItems();
+      console.log("constructor of ProductListPage")
+    }
+
+    openAddProductPage() {
+      console.log("clicked openAddProductPage");
+      this.router.navigate(["/add-product-page"]);
+    }
+
+    viewItem(item) {
+      console.log("clicked an item")
+      this.router.navigate(["/product-detail-page",item])
+    }
 
 }
