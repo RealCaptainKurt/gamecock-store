@@ -13,13 +13,31 @@ export class OrderListPagePage {
 
   constructor(private router: Router,
     public orderService: OrderService) { 
-      this.orders= this.orderService.getOrders();
       console.log("constructor of OrderListPage")
+      this.orders = this.orderService.getOrders();
+    }
+
+    ngOnInit() {
+      // this.orders = this.orderService.getOrders();
     }
 
     viewOrder(order) {
       console.log("clicked an order")
       this.router.navigate(["/order-detail-page",order])
     }
+
+  // helpful code, thank you Vishal
+  //   orders=[]
+
+  // constructor(private router: Router, 
+  //   public orderService: OrderService) { }
+
+  // ngOnInit() {
+  //   this.orders = this.orderService.getOrders();
+  // }
+
+  // viewOrder(order) {
+  //   this.router.navigate(["/order-detail",order])
+  // }
 
 }

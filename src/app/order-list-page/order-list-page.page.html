@@ -5,22 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-list>
-    <ion-item *ngFor="let item of orders" (click)="viewOrder(order)">
+    <ion-item *ngFor="let order of orders" (click)="viewOrder(order)">
       <ion-thumbnail slot="start">
-        <ion-img [src]="photo"></ion-img>
+        <ion-img [src]=order.photo></ion-img>
       </ion-thumbnail>
       <ion-label>{{order.id}}</ion-label>
-      <ion-label>{{order.name}}</ion-label>
+      <!-- Not needed -->
+      <!-- <ion-label>{{order.name}}</ion-label> -->
       <ion-label>{{order.quantity}}</ion-label>
       <ion-label>${{order.amount}}</ion-label>
+      <ion-label>{{order.date}}</ion-label>
     </ion-item>
   </ion-list>
 

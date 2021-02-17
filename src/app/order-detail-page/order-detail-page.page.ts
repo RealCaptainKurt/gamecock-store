@@ -31,7 +31,7 @@ export class OrderDetailPagePage implements OnInit {
 
   goBack() {
     console.log("clicked goBack");
-    this.router.navigate(["/order-list-page"]);
+    this.router.navigate(["../tabs/OrderListPagePage"]);
   }
 
 }

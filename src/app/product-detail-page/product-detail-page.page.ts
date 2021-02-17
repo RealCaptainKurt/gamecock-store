@@ -11,7 +11,7 @@ import { OrderService } from '../order.service';
 export class ProductDetailPagePage implements OnInit {
 
   item=null;
-  order={quanitity:1};
+  order={quantity:1};
   orders=[];
 
   constructor(
@@ -43,9 +43,26 @@ export class ProductDetailPagePage implements OnInit {
   //   }
   // }
 
+  // orderMe() {
+  //   console.log(this.order.quantity);
+  //   this.orderService.createOrder(this.item,this.order.quantity);
+  //   this.goBack();
+  // }
+
   orderMe() {
-    console.log(this.order.quanitity); // listen, somewhere in my code i delcared this as "quanitity" instead of "quantity" and I dont know where it is to change it back
-    this.orderService.createOrder(this.item,this.order.quanitity);
+		let orderid=this.orderService.lastID+1;
+    this.orderService.lastID++;
+		var d = new Date();
+		var date = d.getFullYear().toString() + "/" + d.getMonth().toString() + "/" + d.getDate.toString();
+		this.orderService.orders.push({
+			id:orderid,
+      name:this.item.name,
+      photo:this.item.photo,
+      price:this.item.price,
+			quantity:this.order.quantity,
+			date:date,
+			amount:this.order.quantity*this.item.price
+		});
     this.goBack();
   }
 
