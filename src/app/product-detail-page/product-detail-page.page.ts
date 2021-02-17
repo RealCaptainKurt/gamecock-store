@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { ItemService } from '../item.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -15,6 +16,7 @@ export class ProductDetailPagePage implements OnInit {
 
   constructor(
     public itemService:ItemService,
+    public orderService:OrderService,
     private route:ActivatedRoute,
     private router:Router
   ) { }
@@ -43,7 +45,7 @@ export class ProductDetailPagePage implements OnInit {
 
   orderMe() {
     console.log(this.order.quanitity); // listen, somewhere in my code i delcared this as "quanitity" instead of "quantity" and I dont know where it is to change it back
-    this.itemService.createOrder(this.item,this.order.quanitity);
+    this.orderService.createOrder(this.item,this.order.quanitity);
     this.goBack();
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { ItemService } from '../item.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-order-detail-page',
@@ -14,7 +14,7 @@ export class OrderDetailPagePage implements OnInit {
   orders=[];
 
   constructor(
-    public itemService:ItemService,
+    public orderService:OrderService,
     private route:ActivatedRoute,
     private router:Router
   ) { }

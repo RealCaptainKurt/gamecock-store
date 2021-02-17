@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ItemService } from '../item.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-order-list-page',
@@ -12,8 +12,8 @@ export class OrderListPagePage {
   orders=[]
 
   constructor(private router: Router,
-    public itemService: ItemService) { 
-      this.orders= this.itemService.getOrders();
+    public orderService: OrderService) { 
+      this.orders= this.orderService.getOrders();
       console.log("constructor of OrderListPage")
     }
 
