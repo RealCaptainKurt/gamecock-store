@@ -3,9 +3,11 @@ import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { ItemService } from '../item.service';
+import { Item } from '../modal/item';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-add-product-page',
@@ -17,7 +19,7 @@ export class AddProductPagePage implements OnInit {
   new_product_form: FormGroup;
 
   constructor(
-    private router: Router,
+    private fbService: FirebaseService,
     public formBuilder: FormBuilder,
     public itemService: ItemService
   ) { }
@@ -39,8 +41,17 @@ export class AddProductPagePage implements OnInit {
     console.log(value.photo)
     console.log(value.description)
 
-    this.itemService.createItem(value.name, 
-      value.price, value.category, value.photo, value.description);
+    // TODO : FIX THIS METHOD
+    Item tempItem = new Item()
+
+
+    this.fbService.addNote(this.note).then(() => {
+      //       this.router.navigateByUrl('/');
+      //     }, err => {
+      //     });
+
+    // this.itemService.createItem(value.name, 
+    //   value.price, value.category, value.photo, value.description);
 
     this.goBack();
   }
@@ -51,3 +62,40 @@ export class AddProductPagePage implements OnInit {
   }
 
 }
+
+// import { Component, OnInit } from '@angular/core';
+// import {FirebaseService} from '../services/firebase.service';
+// import {ActivatedRoute, Router} from '@angular/router';
+// import {ToastController} from '@ionic/angular';
+// import {Note} from '../modal/Note';
+
+// @Component({
+//   selector: 'app-add-note',
+//   templateUrl: './add-note.page.html',
+//   styleUrls: ['./add-note.page.scss'],
+// })
+// export class AddNotePage implements OnInit {
+//   note: Note = {
+//     title: '',
+//     content: '',
+//     createdAt: new Date().getTime()
+//   };
+
+//   constructor(
+//       private activatedRoute: ActivatedRoute,
+//       private fbService: FirebaseService,
+//       private toastCtrl: ToastController,
+//       private router: Router
+//   ) { }
+
+//   ngOnInit() {
+//   }
+
+//   addNote() {
+//     this.fbService.addNote(this.note).then(() => {
+//       this.router.navigateByUrl('/');
+//     }, err => {
+//     });
+//   }
+
+// }
