@@ -3,7 +3,6 @@ import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { ItemService } from '../item.service';
-import { Category } from '../category.enum';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -27,7 +26,7 @@ export class AddProductPagePage implements OnInit {
     this.new_product_form = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       price: new FormControl(0, Validators.required),
-      category: new FormControl(Category[4], Validators.required),
+      category: new FormControl('', Validators.required),
       photo: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
     });
