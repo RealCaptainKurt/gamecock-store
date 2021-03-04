@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { ItemService } from '../item.service';
 import { Category } from '../category.enum';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 @Component({
   selector: 'app-add-product-page',
   templateUrl: './add-product-page.page.html',

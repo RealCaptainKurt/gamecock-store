@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Category } from './category.enum';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 @Injectable({
   providedIn: 'root'
 })

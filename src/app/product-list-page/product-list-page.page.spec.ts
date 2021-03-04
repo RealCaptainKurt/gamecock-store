@@ -3,6 +3,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProductListPage } from './product-list-page.page';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 describe('ProductListPage', () => {
   let component: ProductListPage;
   let fixture: ComponentFixture<ProductListPage>;

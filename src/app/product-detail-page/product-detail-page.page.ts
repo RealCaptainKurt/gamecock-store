@@ -3,6 +3,9 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { ItemService } from '../item.service';
 import { OrderService } from '../order.service';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 @Component({
   selector: 'app-product-detail-page',
   templateUrl: './product-detail-page.page.html',
