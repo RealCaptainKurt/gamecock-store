@@ -61,7 +61,8 @@ export class ProfilePage implements OnInit {
 
   signup(){
   	console.log("clicked signup");
-    this.router.navigate(["../tabs/SignUpPage"]);
+    // this.router.navigate(["../tabs/SignUpPage"]);
+    this.router.navigate(["/signup"])
   }
 
   loginGoogle(){

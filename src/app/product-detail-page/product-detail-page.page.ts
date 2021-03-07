@@ -38,13 +38,18 @@ export class ProductDetailPagePage implements OnInit, AfterViewInit {
   ngOnInit() {
     // I don't think we need this anymore, leaving it just in case
     //
-    // console.log("OnInit");
-  	// this.route.params.subscribe(
-  	// 	param=>{
-  	// 		this.item = param;
-  	// 		console.log(this.item);
-  	// 	}
-  	// )
+    console.log("OnInit");
+  	this.route.params.subscribe(
+  		params=>{
+  			this.item.id = params.id;
+        this.item.name = params.name;
+        this.item.price = params.price;
+        this.item.category = params.category;
+        this.item.description = params.description;
+        this.item.photo = params.photo;
+  			console.log(this.item);
+  		}
+  	)
   }
 
   // i think this populates the item, but im not sure exactly how

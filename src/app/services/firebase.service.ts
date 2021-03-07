@@ -9,6 +9,7 @@ import { Order } from '../modal/order';
 import firebase from 'firebase/app';
 // import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from '../modal/user';
 
 
 @Injectable({
@@ -21,7 +22,13 @@ export class FirebaseService {
   private itemCollection: AngularFirestoreCollection<Item>;
   private orders: Observable<Order[]>;
   private orderCollection: AngularFirestoreCollection<Order>;
-  usertype="";
+  private users: Observable<User[]>;
+  private userCollection: AngularFirestoreCollection<User>;
+  user = {
+    email:'',
+    password:'',
+    type:''
+  };
   uid='';
   
 
@@ -70,6 +77,18 @@ export class FirebaseService {
     console.log("orders loaded");
   }
 
+  tempUser: User;
+  newUser(email, password, type): User {
+    this.tempUser.email = email;
+    this.tempUser.password = password;
+    this.tempUser.type = type;
+    return this.tempUser;
+  }
+
+  addUser(user:User): Promise<DocumentReference> {
+    return this.userCollection.add(user);
+  }
+
   setUID(uid) {
     this.uid=uid;
   }
@@ -78,12 +97,12 @@ export class FirebaseService {
     return this.uid;
   }
 
-  setUserType(type) {
-    this.usertype = type;
+  setUserType(type:string) {
+    this.user.type = type;
   }
 
   getUserType() {
-    return this.usertype;
+    return this.user.type;
   }
   // END USER METHODS
 
@@ -134,6 +153,7 @@ export class FirebaseService {
   }
 
   getOrder(id: string): Observable<Order> {
+    this.loadMyOrders();
     return this.orderCollection.doc<Order>(id).valueChanges().pipe(
         take(1),
         map(order => {

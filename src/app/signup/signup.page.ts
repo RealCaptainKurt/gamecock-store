@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ProfilePage } from '../profile/profile.page';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,8 @@ export class SignupPage implements OnInit {
 
   constructor(public afAuth: AngularFireAuth,
     private router:Router,
-    private pp:ProfilePage) { 
+    private pp:ProfilePage,
+    private fbService:FirebaseService) { 
     //empty
   }
 
@@ -26,13 +28,13 @@ export class SignupPage implements OnInit {
     //empty
   }
 
-   signUpWithEmail(email: string, password: string) {
+  signUpWithEmail(email: string, password: string) {
  
     // i may have copied this code from the example but i had to clean it the hell up
     this.afAuth.createUserWithEmailAndPassword(email, password).then(user => {
 		  // navigate to user profile
 		  console.log(user.user.email, user.user.uid);
-
+      
 		  var db = firebase.firestore();
 		  db.collection("usertype").add({
 		    'uid':user.user.uid,
@@ -49,9 +51,10 @@ export class SignupPage implements OnInit {
 	});
 
   this.pp.signedIn = true;  
+  // this.fbService.newUser(email, password, this.user.type);
 
   // just a go back
   this.router.navigateByUrl('/');
-}
+  }
 
 }
