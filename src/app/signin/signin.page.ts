@@ -51,7 +51,7 @@ export class SigninPage implements OnInit {
       }).catch(function(error) {
         console.log("Error getting documents: ", error);
       });
-      this.pp.isSignedIn(true);
+      //this.pp.isSignedIn(true);
       this.goBack();
 	  }).catch(error => {
 	  	console.log(error)
@@ -78,7 +78,7 @@ export class SigninPage implements OnInit {
         self.fbService.setUID(user.uid);
         self.fbService.loadMyOrders();
         self.fbService.setUserType("visitor");
-      this.pp.isSignedIn(true);
+      //this.pp.isSignedIn(true);
       this.goBack();
     }).catch((error) => {
       // Handle Errors here.

@@ -24,6 +24,14 @@ const routes: Routes = [
         loadChildren: () => import('../signin/signin.module').then(m => m.SigninPageModule)
       },
       {
+        path: 'ProfilePage',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
+        path: 'SignUpPage',
+        loadChildren: () => import('../signup/signup.module').then(m => m.SignupPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/ProductListPage',
         pathMatch: 'full'

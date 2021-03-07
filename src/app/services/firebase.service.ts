@@ -74,6 +74,10 @@ export class FirebaseService {
     this.uid=uid;
   }
 
+  getUID() {
+    return this.uid;
+  }
+
   setUserType(type) {
     this.usertype = type;
   }

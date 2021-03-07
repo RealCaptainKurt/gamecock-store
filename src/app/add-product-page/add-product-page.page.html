@@ -10,54 +10,51 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  <!-- <form [formGroup]="new_product_form" (submit)="createItem(new_product_form.value)"> -->
     
-    <ion-item>
-      <ion-label color="primary" position="floating">Name</ion-label>
-      <ion-input type="text" [(ngModel)]="item.name" required></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Name</ion-label>
+    <ion-input type="text" [(ngModel)]="item.name" required></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="floating">Price</ion-label>
-      <ion-input type="number" [(ngModel)]="item.price" required></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Price</ion-label>
+    <ion-input type="number" [(ngModel)]="item.price" required></ion-input>
+  </ion-item>
 
-    <!-- Radio List here -->
-    <ion-list>
-      <ion-radio-group [(ngModel)]="item.category">
-        <ion-list-header>
-          <ion-label>Category</ion-label>
-        </ion-list-header>
+  <!-- Radio List here -->
+  <ion-list>
+    <ion-radio-group [(ngModel)]="item.category">
+      <ion-list-header>
+        <ion-label>Category</ion-label>
+      </ion-list-header>
     
-        <ion-item>
-          <ion-label>Toy</ion-label>
-          <ion-radio slot="start" value="Toy"></ion-radio>
-        </ion-item>
+      <ion-item>
+        <ion-label>Toy</ion-label>
+        <ion-radio slot="start" value="Toy"></ion-radio>
+      </ion-item>
     
-        <ion-item>
-          <ion-label>Food</ion-label>
-          <ion-radio slot="start" value="Food"></ion-radio>
-        </ion-item>
+      <ion-item>
+        <ion-label>Food</ion-label>
+        <ion-radio slot="start" value="Food"></ion-radio>
+      </ion-item>
     
-        <ion-item>
-          <ion-label>Drink</ion-label>
-          <ion-radio slot="start" value="Drink"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
+      <ion-item>
+        <ion-label>Drink</ion-label>
+        <ion-radio slot="start" value="Drink"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 
-    <ion-item>
-      <ion-label color="primary" position="floating">Photo URL</ion-label>
-      <ion-input type="text" [(ngModel)]="item.photo" required></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Photo URL</ion-label>
+    <ion-input type="text" [(ngModel)]="item.photo" required></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="floating">Description</ion-label>
-      <ion-input type="text" [(ngModel)]="item.description" required></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Description</ion-label>
+    <ion-input type="text" [(ngModel)]="item.description" required></ion-input>
+  </ion-item>
 
-    <ion-button color="primary" expand="block" (click)="createItem()">Create</ion-button>
-    <!-- [disabled]="!new_item_form.valid" -->
-  </form>
+  <ion-button color="primary" expand="block" (click)="createItem()">Create</ion-button>
 
 </ion-content>

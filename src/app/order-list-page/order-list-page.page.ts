@@ -26,10 +26,10 @@ export class OrderListPagePage {
 
     ngOnInit() {
       console.log("home ")
-    this.orders = this.fbService.getOrders();
+      this.orders = this.fbService.getOrders();
 
-    var user1 = firebase.auth().currentUser;
-		console.log(user1.uid)
+      var user1 = firebase.auth().currentUser;
+		  console.log(user1.uid)
     }
 
     viewOrder(order) {

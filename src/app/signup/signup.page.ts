@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import {ActivatedRoute, Router} from '@angular/router';
+import { ProfilePage } from '../profile/profile.page';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,9 @@ export class SignupPage implements OnInit {
       type:""
     };
 
-  constructor(public afAuth: AngularFireAuth,private router:Router) { 
+  constructor(public afAuth: AngularFireAuth,
+    private router:Router,
+    private pp:ProfilePage) { 
     //empty
   }
 
@@ -44,6 +47,8 @@ export class SignupPage implements OnInit {
 	  }).catch(error => {
 		  console.log(error)
 	});
+
+  this.pp.signedIn = true;  
 
   // just a go back
   this.router.navigateByUrl('/');

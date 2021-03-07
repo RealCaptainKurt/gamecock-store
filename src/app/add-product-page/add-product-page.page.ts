@@ -50,6 +50,6 @@ export class AddProductPagePage implements OnInit {
   // go back to product list page
   goBack() {
     console.log("clicked goBack");
-    this.router.navigate(["./tabs/ProductListPage"]);
+    this.router.navigate(["../tabs/ProductListPage"]);
   }
 }
