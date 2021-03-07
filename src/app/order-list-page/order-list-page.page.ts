@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderService } from '../order.service';
 
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseApp } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Order } from '../modal/order';
+import { FirebaseService } from '../services/firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-order-list-page',
@@ -12,16 +16,20 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class OrderListPagePage {
 
-  orders=[]
+  private orders: Observable<Order[]>;
 
   constructor(private router: Router,
-    public orderService: OrderService) { 
-      console.log("constructor of OrderListPage")
-      this.orders = this.orderService.getOrders();
+    private fbService: FirebaseService,
+    public angularFire: AngularFireAuth) { 
+      // empty
     }
 
     ngOnInit() {
-      // this.orders = this.orderService.getOrders();
+      console.log("home ")
+    this.orders = this.fbService.getOrders();
+
+    var user1 = firebase.auth().currentUser;
+		console.log(user1.uid)
     }
 
     viewOrder(order) {

@@ -6,9 +6,9 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { map, take } from 'rxjs/operators';
 import { Item } from '../modal/item';
 import { Order } from '../modal/order';
-import { OrderService } from 'unneeded/order.service';
-import * as firebase from 'firebase';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
+import firebase from 'firebase/app';
+// import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Injectable({
@@ -25,7 +25,8 @@ export class FirebaseService {
   uid='';
   
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore,
+    public afa: AngularFireAuth) {
     this.itemCollection = this.afs.collection<Item>('items');
     this.items = this.itemCollection.snapshotChanges().pipe(
         map(actions => {

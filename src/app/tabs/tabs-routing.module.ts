@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../order-list-page/order-list-page.module').then(m => m.OrderListPagePageModule)
       },
       {
+        path: 'SignInPage',
+        loadChildren: () => import('../signin/signin.module').then(m => m.SigninPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/ProductListPage',
         pathMatch: 'full'
