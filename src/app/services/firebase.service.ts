@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemService } from '../item.service';
-import { OrderService } from '../order.service';
+// import { ItemService } from '../item.service';
+// import { OrderService } from '../order.service';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
+import { Item } from '../modal/item';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  private items: Observable<ItemService[]>;
-  private itemCollection: AngularFirestoreCollection<ItemService>;
+  private items: Observable<Item[]>;
+  private itemCollection: AngularFirestoreCollection<Item>;
 
   constructor(private afs: AngularFirestore) {
-    this.itemCollection = this.afs.collection<ItemService>('items');
+    this.itemCollection = this.afs.collection<Item>('items');
     this.items = this.itemCollection.snapshotChanges().pipe(
         map(actions => {
           return actions.map(a => {
@@ -26,33 +27,46 @@ export class FirebaseService {
     );
   }
 
-  getItems(): Observable<ItemService[]> {
+  // ITEM METHODS
+  getItems(): Observable<Item[]> {
     return this.items;
   }
 
-  getNote(id: string): Observable<ItemService> {
-    return this.itemCollection.doc<ItemService>(id).valueChanges().pipe(
+  getItem(id: string): Observable<Item> {
+    return this.itemCollection.doc<Item>(id).valueChanges().pipe(
         take(1),
-        map(ItemService => {
-          ItemService.id = id;
-          return ItemService;
+        map(item => {
+          item.id = id;
+          return item;
         })
     );
   }
 
-  //TODO: Replace all of these with items
-
-  addNote(note: Note): Promise<DocumentReference> {
-    return this.noteCollection.add(note);
+  addItem(item: Item): Promise<DocumentReference> {
+    return this.itemCollection.add(item);
   }
 
-  updateNote(note: Note): Promise<void> {
-    return this.noteCollection.doc(note.id).update({ title: note.title, content: note.content });
+  updateItem(item: Item): Promise<void> {
+    return this.itemCollection.doc(item.id).update({ 
+      id: item.id, name: item.name, price: item.price,
+      category: item.category, photo: item.photo, 
+      description: item.description });
   }
 
-  deleteNote(id: string): Promise<void> {
-    return this.noteCollection.doc(id).delete();
+  deleteItem(id: string): Promise<void> {
+    return this.itemCollection.doc(id).delete();
   }
+
+  getLastID(): number {
+    let tempItems = this.getItems;
+    return tempItems.length;
+  }
+
+  getNextID(): number {
+    let tempItems = this.getItems;
+    return tempItems.length + 1;
+  }
+  // END ITEM METHODS
 
   // TODO: Add methods for Orders and maybe Users
 }

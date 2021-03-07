@@ -10,21 +10,21 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  <form [formGroup]="new_product_form" (submit)="createItem(new_product_form.value)">
+  <!-- <form [formGroup]="new_product_form" (submit)="createItem(new_product_form.value)"> -->
     
     <ion-item>
       <ion-label color="primary" position="floating">Name</ion-label>
-      <ion-input type="text" formControlName="name" required></ion-input>
+      <ion-input type="text" [(ngModel)]="item.name" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" position="floating">Price</ion-label>
-      <ion-input type="number" formControlName="price" required></ion-input>
+      <ion-input type="number" [(ngModel)]="item.price" required></ion-input>
     </ion-item>
 
     <!-- Radio List here -->
     <ion-list>
-      <ion-radio-group formControlName="category">
+      <ion-radio-group [(ngModel)]="item.category">
         <ion-list-header>
           <ion-label>Category</ion-label>
         </ion-list-header>
@@ -48,15 +48,15 @@
 
     <ion-item>
       <ion-label color="primary" position="floating">Photo URL</ion-label>
-      <ion-input type="text" formControlName="photo" required></ion-input>
+      <ion-input type="text" [(ngModel)]="item.photo" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" position="floating">Description</ion-label>
-      <ion-input type="text" formControlName="description" required></ion-input>
+      <ion-input type="text" [(ngModel)]="item.description" required></ion-input>
     </ion-item>
 
-    <ion-button class="submit-btn" expand="block" type="submit">Create</ion-button>
+    <ion-button color="primary" expand="block" (click)="createItem()">Create</ion-button>
     <!-- [disabled]="!new_item_form.valid" -->
   </form>
 
