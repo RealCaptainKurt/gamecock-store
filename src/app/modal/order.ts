@@ -5,6 +5,6 @@ export interface Order {
     category: string;
     price: number;
     quantity: number;
-    date: Date;
+    date: string;
     amount: number;
 }

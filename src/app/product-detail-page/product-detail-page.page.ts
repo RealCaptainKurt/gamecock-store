@@ -23,6 +23,7 @@ export class ProductDetailPagePage implements OnInit {
     description: '',
     photo: ''
   }
+  quantity: number
 
   constructor(
     // public itemService:ItemService,
@@ -56,7 +57,7 @@ export class ProductDetailPagePage implements OnInit {
 
   // simple method to call Firebase addOrder
   orderMe() {
-    this.fbService.addOrder(this.item);
+    this.fbService.addOrder(this.item, this.quantity);
     // Commenting out but leaving the code here, just in case
     //
 		// let orderid=this.orderService.lastID+1;
@@ -72,7 +73,7 @@ export class ProductDetailPagePage implements OnInit {
 		// 	date:date,
 		// 	amount:this.order.quantity*this.item.price
 		// });
-    // this.goBack();
+    this.goBack();
   }
 
   // goes back to product list page

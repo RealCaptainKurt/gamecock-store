@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { map, take } from 'rxjs/operators';
 import { Item } from '../modal/item';
 import { Order } from '../modal/order';
+import { OrderService } from 'unneeded/order.service';
 
 
 @Injectable({
@@ -87,18 +88,40 @@ export class FirebaseService {
     );
   }
 
-  addOrder(item: Item): Promise<DocumentReference> {
-    // FINISH THIS METHOD
-    // NEEDS TO POPULATE ID, PULL VARIABLES FROM ITEM,
-    // AND POPULATE THE DATE
-    return this.itemCollection.add(item); // THIS IS NOT RIGHT
+  // Used for making a new order within addOrder
+  tempOrder: Order;
+  newOrder(id:number, name:string, price:number,
+    category:string, photo:string, quantity:number,
+    amount:number, date:string): Order {
+      this.tempOrder.id = id;
+      this.tempOrder.name = name;
+      this.tempOrder.price = price;
+      this.tempOrder.category = category;
+      this.tempOrder.photo = photo;
+      this.tempOrder.quantity = quantity;
+      this.tempOrder.amount = amount;
+      this.tempOrder.date = date;
+      return this.tempOrder;
+    }
+
+  addOrder(item:Item, num:number): Promise<DocumentReference> {
+    // Creates the date
+    var d = new Date();
+		var date = d.getFullYear().toString() + "/" + d.getMonth().toString() + "/" + d.getDate.toString();
+
+    // Creates the order and adds it to the firebase database
+    return this.orderCollection.add(this.newOrder(
+      this.getNextOrderID(), item.name, item.price, 
+      item.category, item.photo, num, 
+      (num*item.price), date)
+    );
   }
 
   updateOrder(order: Order): Promise<void> {
     return this.orderCollection.doc(order.id).update({ 
       id: order.id, name: order.name, price: order.price,
       category: order.category, photo: order.photo, 
-      quantity: order.quantity, amount: order.amount });
+      quantity: order.quantity, amount: order.amount , date:order.date});
   }
 
   deleteOrder(id: string): Promise<void> {
