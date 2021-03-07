@@ -30,7 +30,7 @@ export class AddProductPagePage implements OnInit {
 
   // update id when called
   ngOnInit() {
-    this.item.id = this.fbService.getNextID();
+    this.item.id = this.fbService.getNextItemID();
   }
 
   createItem() {

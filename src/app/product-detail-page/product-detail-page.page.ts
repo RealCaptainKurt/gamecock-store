@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { ItemService } from '../item.service';
-import { OrderService } from '../order.service';
+// import { ItemService } from '../item.service';
+// import { OrderService } from '../order.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from '../services/firebase.service';
+import { Item } from '../modal/item';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -13,62 +15,67 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProductDetailPagePage implements OnInit {
 
-  item=null;
-  order={quantity:1};
-  orders=[];
+  item: Item = {
+    id: 0,
+    name: '',
+    price: 0,
+    category: '',
+    description: '',
+    photo: ''
+  }
 
   constructor(
-    public itemService:ItemService,
-    public orderService:OrderService,
+    // public itemService:ItemService,
+    // public orderService:OrderService,
+    private fbService: FirebaseService,
     private route:ActivatedRoute,
     private router:Router
   ) { }
 
   ngOnInit() {
-    console.log("OnInit");
-  	this.route.params.subscribe(
-  		param=>{
-  			this.item = param;
-  			console.log(this.item);
-  		}
-  	)
+    // I don't think we need this anymore, leaving it just in case
+    //
+    // console.log("OnInit");
+  	// this.route.params.subscribe(
+  	// 	param=>{
+  	// 		this.item = param;
+  	// 		console.log(this.item);
+  	// 	}
+  	// )
   }
 
-  // printCategory() {
-  //   if(this.item.category == 0) {
-  //     return "Toy";
-  //   } else if (this.item.category == 1) {
-  //     return "Food";
-  //   } else if (this.item.category == 2) {
-  //     return "Drink";
-  //   } else {
-  //     return "Error, this is the default category";
-  //   }
-  // }
+  // i think this populates the item, but im not sure exactly how
+  ngAfterViewInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.fbService.getItem(id).subscribe(itemData => {
+        this.item = itemData;
+      });
+    }
+  }
 
-  // orderMe() {
-  //   console.log(this.order.quantity);
-  //   this.orderService.createOrder(this.item,this.order.quantity);
-  //   this.goBack();
-  // }
-
+  // simple method to call Firebase addOrder
   orderMe() {
-		let orderid=this.orderService.lastID+1;
-    this.orderService.lastID++;
-		var d = new Date();
-		var date = d.getFullYear().toString() + "/" + d.getMonth().toString() + "/" + d.getDate.toString();
-		this.orderService.orders.push({
-			id:orderid,
-      name:this.item.name,
-      photo:this.item.photo,
-      price:this.item.price,
-			quantity:this.order.quantity,
-			date:date,
-			amount:this.order.quantity*this.item.price
-		});
-    this.goBack();
+    this.fbService.addOrder(this.item);
+    // Commenting out but leaving the code here, just in case
+    //
+		// let orderid=this.orderService.lastID+1;
+    // this.orderService.lastID++;
+		// var d = new Date();
+		// var date = d.getFullYear().toString() + "/" + d.getMonth().toString() + "/" + d.getDate.toString();
+		// this.orderService.orders.push({
+		// 	id:orderid,
+    //   name:this.item.name,
+    //   photo:this.item.photo,
+    //   price:this.item.price,
+		// 	quantity:this.order.quantity,
+		// 	date:date,
+		// 	amount:this.order.quantity*this.item.price
+		// });
+    // this.goBack();
   }
 
+  // goes back to product list page
   goBack() {
     console.log("clicked goBack");
     this.router.navigate(["../tabs/ProductListPage"]);

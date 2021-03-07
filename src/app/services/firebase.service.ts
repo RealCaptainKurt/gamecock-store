@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Item } from '../modal/item';
+import { Order } from '../modal/order';
 
 
 @Injectable({
@@ -13,6 +14,9 @@ import { Item } from '../modal/item';
 export class FirebaseService {
   private items: Observable<Item[]>;
   private itemCollection: AngularFirestoreCollection<Item>;
+  private orders: Observable<Order[]>;
+  private orderCollection: AngularFirestoreCollection<Order>;
+  
 
   constructor(private afs: AngularFirestore) {
     this.itemCollection = this.afs.collection<Item>('items');
@@ -57,16 +61,60 @@ export class FirebaseService {
     return this.itemCollection.doc(id).delete();
   }
 
-  getLastID(): number {
+  getLastItemID(): number {
     let tempItems = this.getItems;
     return tempItems.length;
   }
 
-  getNextID(): number {
+  getNextItemID(): number {
     let tempItems = this.getItems;
     return tempItems.length + 1;
   }
   // END ITEM METHODS
 
-  // TODO: Add methods for Orders and maybe Users
+  // ORDER METHODS
+  getOrders(): Observable<Order[]> {
+    return this.orders;
+  }
+
+  getOrder(id: string): Observable<Order> {
+    return this.orderCollection.doc<Order>(id).valueChanges().pipe(
+        take(1),
+        map(order => {
+          order.id = id;
+          return order;
+        })
+    );
+  }
+
+  addOrder(item: Item): Promise<DocumentReference> {
+    // FINISH THIS METHOD
+    // NEEDS TO POPULATE ID, PULL VARIABLES FROM ITEM,
+    // AND POPULATE THE DATE
+    return this.itemCollection.add(item); // THIS IS NOT RIGHT
+  }
+
+  updateOrder(order: Order): Promise<void> {
+    return this.orderCollection.doc(order.id).update({ 
+      id: order.id, name: order.name, price: order.price,
+      category: order.category, photo: order.photo, 
+      quantity: order.quantity, amount: order.amount });
+  }
+
+  deleteOrder(id: string): Promise<void> {
+    return this.orderCollection.doc(id).delete();
+  }
+
+  getLastOrderID(): number {
+    let tempOrders = this.getOrders;
+    return tempOrders.length;
+  }
+
+  getNextOrderID(): number {
+    let tempOrders = this.getOrders;
+    return tempOrders.length + 1;
+  }
+  // END OF ORDER METHODS
+
+  // TODO: Add methods for Users
 }
