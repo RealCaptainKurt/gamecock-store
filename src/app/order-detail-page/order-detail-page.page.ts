@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { OrderService } from '../order.service';
+import { Order } from '../modal/order';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-order-detail-page',
@@ -9,25 +10,45 @@ import { OrderService } from '../order.service';
 })
 export class OrderDetailPagePage implements OnInit {
 
-  item=null;
-  order={quanitity:1};
-  orders=[];
+  // I wrote this in alphabetical order this time, it was just easier
+  order: Order = {
+    amount: 0,
+    category: '',
+    date: '',
+    id: 0,
+    name: '',
+    photo: '',
+    price: 0,
+    quantity: 0
+  }
 
   constructor(
-    public orderService:OrderService,
-    private route:ActivatedRoute,
-    private router:Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private fbService: FirebaseService
   ) { }
 
   ngOnInit() {
-    console.log("OnInit");
-  	this.route.params.subscribe(
-  		param=>{
-  			this.item = param;
-  			console.log(this.item);
-  		}
-  	)
+    // empty
   }
+
+  ngAfterViewInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.fbService.getOrder(id).subscribe(orderData => {
+        this.order = orderData;
+      });
+    }
+  }
+  // ngOnInit() {
+  //   console.log("OnInit");
+  // 	this.route.params.subscribe(
+  // 		param=>{
+  // 			this.order = param;
+  // 			console.log(this.order);
+  // 		}
+  // 	)
+  // }
 
   goBack() {
     console.log("clicked goBack");

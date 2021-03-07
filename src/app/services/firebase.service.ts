@@ -7,16 +7,22 @@ import { map, take } from 'rxjs/operators';
 import { Item } from '../modal/item';
 import { Order } from '../modal/order';
 import { OrderService } from 'unneeded/order.service';
+import * as firebase from 'firebase';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
+
+  // declarations
   private items: Observable<Item[]>;
   private itemCollection: AngularFirestoreCollection<Item>;
   private orders: Observable<Order[]>;
   private orderCollection: AngularFirestoreCollection<Order>;
+  usertype="";
+  uid='';
   
 
   constructor(private afs: AngularFirestore) {
@@ -30,7 +36,51 @@ export class FirebaseService {
           });
         })
     );
+    this.orderCollection = this.afs.collection<Order>('orders');
+    this.orders = this.orderCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+  );
   }
+
+  // USER METHODS
+  loadMyOrders() {
+    var user = firebase.auth().currentUser;
+    console.log(user.uid);
+    var uid=user.uid;
+    this.orderCollection = this.afs.collection<Order>('orders',
+      ref => ref.where('uid', '==', uid));
+
+    this.orders = this.orderCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          console.log(id);
+          return { id, ...data };
+        });
+      })
+    );
+    console.log("orders loaded");
+  }
+
+  setUID(uid) {
+    this.uid=uid;
+  }
+
+  setUserType(type) {
+    this.usertype = type;
+  }
+
+  getUserType() {
+    return this.usertype;
+  }
+  // END USER METHODS
 
   // ITEM METHODS
   getItems(): Observable<Item[]> {
@@ -138,6 +188,4 @@ export class FirebaseService {
     return tempOrders.length + 1;
   }
   // END OF ORDER METHODS
-
-  // TODO: Add methods for Users
 }

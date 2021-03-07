@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 // idk if we need this line but i copied it anyway
 //import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -25,7 +26,7 @@ const firebaseConfig = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
-    /*IonicStorageModule.forRoot(),*/ AngularFireModule.initializeApp(firebaseConfig)],
+    AngularFireAuthModule, AngularFireModule.initializeApp(firebaseConfig)],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
