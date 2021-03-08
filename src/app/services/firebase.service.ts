@@ -53,7 +53,7 @@ export class FirebaseService {
           return { id, ...data };
         });
       })
-    );
+  );
   }
 
   // USER METHODS
@@ -115,7 +115,7 @@ export class FirebaseService {
     return this.itemCollection.doc<Item>(id).valueChanges().pipe(
         take(1),
         map(item => {
-          item.name = id;
+          item.id = id;
           return item;
         })
     );
@@ -164,16 +164,7 @@ export class FirebaseService {
   }
 
   // Used for making a new order within addOrder
-  tempOrder: Order = {
-    id: 0,
-    name: '',
-    price: 0,
-    category: '',
-    photo: '',
-    quantity: 0,
-    amount: 0,
-    date: ''
-  };
+  tempOrder: Order;
   newOrder(id:number, name:string, price:number,
     category:string, photo:string, quantity:number,
     amount:number, date:string): Order {
@@ -219,11 +210,7 @@ export class FirebaseService {
 
   getNextOrderID(): number {
     let tempOrders = this.getOrders;
-    if(tempOrders == null) {
-      return 0;
-    } else {
-      return tempOrders.length + 1; 
-    }
+    return tempOrders.length + 1;
   }
   // END OF ORDER METHODS
 }

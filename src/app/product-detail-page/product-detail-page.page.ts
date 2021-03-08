@@ -8,7 +8,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseService } from '../services/firebase.service';
 import { Item } from '../modal/item';
 import { AlertController } from '@ionic/angular';
-import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail-page',
