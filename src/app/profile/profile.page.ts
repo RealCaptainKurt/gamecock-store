@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { FirebaseService } from '../services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NgZone } from '@angular/core'
 
 @Component({
   selector: 'app-profile',
@@ -59,10 +60,10 @@ export class ProfilePage implements OnInit {
 	  }); 
   }
 
-  signup(){
+  signup() {
   	console.log("clicked signup");
-    // this.router.navigate(["../tabs/SignUpPage"]);
-    this.router.navigate(["/signup"])
+    this.router.navigate(["../tabs/SignUpPage"]);
+    //this.router.navigate(["/signup"])
   }
 
   loginGoogle(){

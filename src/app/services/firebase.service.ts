@@ -143,7 +143,11 @@ export class FirebaseService {
 
   getNextItemID(): number {
     let tempItems = this.getItems;
-    return tempItems.length + 1;
+    if ( this.items == null ) {
+      return 0;
+    } else {
+      return tempItems.length + 1;
+    }
   }
   // END ITEM METHODS
 
@@ -164,7 +168,16 @@ export class FirebaseService {
   }
 
   // Used for making a new order within addOrder
-  tempOrder: Order;
+  tempOrder: Order = {
+    id: 0,
+    name: '',
+    price: 0,
+    category: '',
+    photo: '',
+    quantity: 0,
+    amount: 0,
+    date: ''
+  };
   newOrder(id:number, name:string, price:number,
     category:string, photo:string, quantity:number,
     amount:number, date:string): Order {
@@ -210,7 +223,11 @@ export class FirebaseService {
 
   getNextOrderID(): number {
     let tempOrders = this.getOrders;
-    return tempOrders.length + 1;
+    if ( tempOrders == null ) {
+      return 0;
+    } else {
+      return tempOrders.length + 1;
+    }
   }
   // END OF ORDER METHODS
 }

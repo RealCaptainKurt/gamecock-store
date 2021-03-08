@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let order of orders" (click)="viewOrder(order)">
+    <ion-item *ngFor="let order of (orders | async)" (click)="viewOrder(order)">
       <ion-thumbnail slot="start">
         <ion-img [src]=order.photo></ion-img>
       </ion-thumbnail>

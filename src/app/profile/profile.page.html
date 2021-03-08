@@ -14,7 +14,7 @@
 <ion-content>
 
   <!-- These show if the user is logged in already -->
-  <ion-label *ngIf="signedIn">Email: {{user.email}}</ion-label>
+  <ion-button *ngIf="signedIn" expand="block" (click)="logOut()">Log Off</ion-button>
 
   
   <!-- These show if the user is not logged in -->
@@ -32,12 +32,8 @@
   <ion-item>
     <ion-grid>
       <ion-button *ngIf="!signedIn" class="submit-btn" (click)="loginGoogle()">Google Login</ion-button>
-      <ion-button *ngIf="!signedIn" class="submit-btn" (click)="signup()">Sign Up</ion-button>
+      <ion-button *ngIf="!signedIn" (click)="signup()">Sign Up</ion-button>
     </ion-grid>
   </ion-item>
 
 </ion-content>
-
-<ion-footer>
-  <ion-button *ngIf="signedIn" expand="block" (click)="logOut">Log Off</ion-button>
-</ion-footer>

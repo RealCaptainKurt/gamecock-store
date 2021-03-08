@@ -53,11 +53,17 @@ export class ProductDetailPagePage implements OnInit, AfterViewInit {
   }
 
   // i think this populates the item, but im not sure exactly how
+
   ngAfterViewInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.fbService.getItem(id).subscribe(itemData => {
-        this.item = itemData;
+        this.item.id = itemData.id;
+        this.item.name = itemData.name;
+        this.item.price = itemData.price;
+        this.item.category = itemData.category;
+        this.item.description = itemData.description;
+        this.item.photo = itemData.photo;
       });
     }
   }
