@@ -13,8 +13,8 @@
 
 <ion-content>
 
-  <!-- These show if the user is logged in already -->
-  <ion-label *ngIf="signedIn">Email: {{user.email}}</ion-label>
+  <!-- This shows if the user is logged in already -->
+  <ion-button *ngIf="signedIn" expand="block" (click)="logOut">Log Off</ion-button>
 
   
   <!-- These show if the user is not logged in -->
@@ -38,6 +38,3 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-button *ngIf="signedIn" expand="block" (click)="logOut">Log Off</ion-button>
-</ion-footer>

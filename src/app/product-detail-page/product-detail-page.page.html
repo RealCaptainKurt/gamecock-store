@@ -11,7 +11,6 @@
 </ion-header>
 
 <ion-content>
-
   <ion-img [src]=item.photo></ion-img>
 
   <ion-item>
@@ -27,7 +26,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-range min="1" max="100" step="1" pin='true'  [(ngModel)]="quantity">
+    <ion-range min="1" max="20" step="1" pin='true'  [(ngModel)]="quantity">
         <ion-icon size="small" slot="start" name="sunny"></ion-icon>
         <ion-icon slot="end" name="sunny"></ion-icon>
       </ion-range>

@@ -10,16 +10,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]=true>
   <ion-img [src]=item.photo></ion-img>
 
   <ion-item>
     ID: {{item.id}}
   </ion-item>
-  <!-- This doesn't exist anymore -->
-  <!-- <ion-item>
-    {{order.item.description}}
-  </ion-item> -->
 
   <ion-item>
     {{item.quantity}} total for ${{item.amount}}
@@ -36,3 +32,8 @@
   </ion-item> -->
 
 </ion-content>
+
+<ion-footer>
+  <ion-button>Update Order</ion-button>
+  <ion-button>Delete Order</ion-button>
+</ion-footer>
